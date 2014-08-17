@@ -6,7 +6,7 @@ var path = require('path'),
     md = require("github-flavored-markdown"),
     extend = require('util-extend');
 
-var VERSION = '0.0.1';
+var VERSION = '0.0.2';
 
 
 var PATTERNS = {
@@ -23,7 +23,9 @@ var PATTERNS = {
 var OPTIONS = {
     overview: __dirname + '/styleguide.md',
     template: __dirname + '/template/index.html',
-    includePath: 'assets/**/*',
+    includeAssetPath: 'assets/**/*',
+    css: './style.css',
+    script: null,
     out: './guide',
     verbose: false
 };
@@ -132,8 +134,6 @@ function parseComment(comment) {
         title: [],
         comment: [],
         attributes: attrs || [],
-        //markdown: markdown,
-        //html: markdown ? md.parse(markdown) : null,
         code: code
     };
 
@@ -213,7 +213,9 @@ function createStyleGuide(data,options,callback) {
                     current: md.parse(res),
                     files: data,
                     overview: true,
-                    helpers: HELPERS
+                    helpers: HELPERS,
+                    css: generateIncludeCss(options.css),
+                    script: generateIncludeScript(options.script)
                 });
                 // ディレクトリを作りつつファイル出力
                 fs.outputFile(options.out + '/index.html', rendered, function (err) {
@@ -233,7 +235,9 @@ function createStyleGuide(data,options,callback) {
                     current: section,
                     files: data,
                     overview: false,
-                    helpers: HELPERS
+                    helpers: HELPERS,
+                    css: generateIncludeCss(options.css),
+                    script: generateIncludeScript(options.script)
                 });
                 if (options.verbose) {
                     echoLog('Render',section.file);
@@ -252,12 +256,12 @@ function createStyleGuide(data,options,callback) {
         },
         //スタイルガイドができたらincludeするその他ファイルをコピー
         function(callback) {
-            if (options.includePath) {
-                // includePathが文字列ならそのまま実行、配列ならeachで回して実行
-                if (typeof options.includePath === 'string') {
-                    readFiles(options.includePath,callback);
+            if (options.includeAssetPath) {
+                // includeAssetPathが文字列ならそのまま実行、配列ならeachで回して実行
+                if (typeof options.includeAssetPath === 'string') {
+                    readFiles(options.includeAssetPath,callback);
                 } else {
-                    async.each(options.includePath,function(targetPath,next) {
+                    async.each(options.includeAssetPath,function(targetPath,next) {
                         readFiles(targetPath,next);
                     },function() {
                         callback();
@@ -358,6 +362,38 @@ function echoLog(label,text,color) {
             break;
     }
     console.log(colorCode + '[' + label + '] ' + defaultColor + text);
+}
+
+/**
+ * HTMLに追加読み込みするCSSファイルパスまたはパスが入った配列からタグを生成
+ * @param arr
+ * @return {string|array}
+ */
+function generateIncludeCss(arr) {
+    if (!arr) return '';
+    if (typeof arr === 'string') {
+        return '<link rel="stylesheet" href="'+arr+'"/>';
+    }
+    var result = [];
+    for (var i = 0,len = arr.length; i < len; i++) {
+        result.push('<link rel="stylesheet" href="'+arr[i]+'"/>');
+    }
+    return result.join('\n');
+}
+/**
+ * HTMLに追加読み込みするJSファイルパスまたはパスが入った配列からタグを生成
+ * @param arr {string|array}
+ */
+function generateIncludeScript(arr) {
+    if (!arr) return '';
+    if (typeof arr === 'string') {
+        return '<script src="'+arr+'"></script>'
+    }
+    var result = [];
+    for (var i = 0,len = arr.length; i < len; i++) {
+        result.push('<script src="'+arr[i]+'"></script>');
+    }
+    return result.join('\n');
 }
 
 // プラグイン関数をエクスポート

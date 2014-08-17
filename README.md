@@ -6,7 +6,7 @@ StyleGuide Generator
 Node.jsを使ったスタイルガイドジェネレーター
 
 ## Version - バージョン
-0.0.1
+0.0.2
 
 ## Usage - 使い方
 
@@ -74,11 +74,11 @@ StyleGuide template path.
 
 スタイルガイドのテンプレートパス
 
-### options.includePath
+### options.includeAssetPath
 Type: `String`
 Default value: `assets/**/*`
 
-The path of the file you want to copy the generated directory
+The path of the file you want to copy the generated directory.
 
 生成されたディレクトリにコピーしたいファイルパス
 
@@ -88,7 +88,21 @@ Default value: `./frontnote`
 
 Directory in which to generate a style guide.
 
-スタイルガイドを生成するディレクトリ
+### options.css
+Type: `String|Array`
+Default value: `./style.css`
+
+Path of CSS that you want to read in HTML. In the array or string.
+
+HTMLに読み込みたいCSSのパス。文字列または配列で指定します。
+
+### options.script
+Type: `String|Array`
+Default value: `null`
+
+Path of JS that you want to read in HTML. In the array or string.
+
+HTMLに読み込みたいJSのパス。文字列または配列で指定します。
 
 ### options.verbose
 Type: `Boolean`
