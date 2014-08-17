@@ -111,3 +111,12 @@ Default value: `false`
 Display a detailed log
 
 ログを詳細に表示します
+
+
+
+## Todo
+
+* タイトルをオプションから設定できるように
+* CSS,JSのincludeをminimatchパスで指定できるように
+* READMEファイルの拡充
+* 各プラグインのオプションを１カ所に集約
