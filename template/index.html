@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>StyleGuide - FrontNote</title>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="http://test.l-svr.net/buzzgang/html/pc/css/common.css"/>
+    <link rel="stylesheet" href="assets/css/style.css"/>
+</head>
+<body>
+<header class="sn-header">
+    <div class="sn-mobile-visible sn-drawer-trigger"><a class="sn-icon sn-bars sn-icon-link"></a></div>
+    <h1 class="sn-title">StyleGuide</h1>
+    <p class="sn-copyright">Developed by <a href="" class="sn-link">frontainer</a></p>
+</header>
+<div class="sn-container">
+    <nav class="sn-sidebar">
+        <a href="./" class="sn-menu<%if(overview){%> sn-is-active<%}%>">Overview</a>
+        <!-- 全ファイル -->
+        <% files.forEach(function(file) { %>
+        <!-- スタイルガイドへのリンク -->
+        <a href="<%- file.url %>" class="sn-menu<%if(helpers.isCurrent(current,file)){%> sn-is-active<%}%>"><%- file.fileName %></a>
+        <% }) %>
+    </nav>
+    <section class="sn-content">
+        <% if(overview) {%>
+            <!-- index.htmlファイルのとき -->
+            <!-- currentにstyleguide.mdがHTMLとして格納されている -->
+            <%-current%>
+        <% } else { %>
+            <h2 class="sn-heading2"><%-current.fileName%> <small class="sn-sub-heading"><%-current.overview.title%></small></h2>
+            <p class="sn-comment"><%-current.overview.comment%></p>
+            <% if(current.sections) { %>
+                <% current.sections.forEach(function(section) { %>
+                    <article class="sn-article">
+                        <h3 class="sn-heading3"><%- section.title %></h3>
+                        <p class="sn-comment"><%- section.comment %></p>
+                        <% if(section.attributes) { %>
+                            <ul class="sn-attribute">
+                            <% section.attributes.forEach(function(attribute) {%>
+                                <% if(attribute === 'duplicated') {%>
+                                    <li class="sn-attribute-item sn-attribute-deprecated"><%-attribute%></li>
+                                <% } else if(attribute === 'mixin'){ %>
+                                    <li class="sn-attribute-item sn-attribute-mixin"><%-attribute%></li>
+                                <% } else if(attribute === 'private') { %>
+                                    <li class="sn-attribute-item sn-attribute-private"><%-attribute%></li>
+                                <% } else { %>
+                                    <li class="sn-attribute-item"><%-attribute%></li>
+                                <% } %>
+                            <% }); %>
+                            </ul>
+                        <% } %>
+                        <div class="sn-preview">
+                            <%- section.code %>
+                        </div>
+                        <pre class="sn-pre"><code class="sn-code" data-language="html"><%= section.code %></code></pre>
+                    </article>
+                <% }) %>
+            <% } %>
+            <div class="sn-pagetop">
+                <a href="" class="sn-icon sn-chevron-up"></a>
+            </div>
+        <% } %>
+    </section>
+</div>
+<script src="assets/lib/jquery.js"></script>
+<script src="assets/lib/jquery.mousewheel.js"></script>
+<script src="assets/lib/rainbow-custom.min.js"></script>
+<script src="assets/js/ripple-effect.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

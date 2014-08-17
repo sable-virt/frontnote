@@ -1,0 +1,40 @@
+{
+  "name": "frontnote",
+  "version": "0.0.1",
+  "description": "StyleGuide Generator FrontNote",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/frontainer/frontnote"
+  },
+  "author": "frontainer <frontainer@gmail.com> (http://frontainer.com)",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": ""
+  },
+  "keywords": [
+    "styleguide",
+    "sass",
+    "less",
+    "stylus",
+    "css",
+    "ejs"
+  ],
+  "dependencies": {
+    "async": "^0.9.0",
+    "ejs": "^1.0.0",
+    "fs-extra": "^0.11.0",
+    "github-flavored-markdown": "^1.0.1",
+    "glob": "^4.0.5",
+    "util-extend": "^1.0.1"
+  },
+  "devDependencies": {
+  },
+  "bugs": {
+    "url": "https://github.com/frontainer/frontnote/issues"
+  },
+  "homepage": "https://github.com/frontainer/frontnote",
+  "main": "index.js"
+}
