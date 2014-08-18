@@ -121,3 +121,8 @@ Default value: `false`
 Display a detailed log
 
 ログを詳細に表示します
+
+## Template - テンプレート
+
+[frontnote-template](https://github.com/frontainer/frontnote-template)
+
