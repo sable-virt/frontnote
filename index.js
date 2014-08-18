@@ -6,8 +6,7 @@ var path = require('path'),
     md = require("github-flavored-markdown"),
     extend = require('util-extend');
 
-var VERSION = '0.0.2';
-
+var VERSION = '0.0.3';
 
 var PATTERNS = {
     comment: /\/\*\s*s?#styleguide([^*]|\*[^/])*\*\//g,
@@ -51,11 +50,9 @@ function FrontNote(target,option,callback) {
     options = extend(options,option);
     options.out = path.resolve(options.out);
 
-    if (target instanceof Array) {
-        start(null,target);
-    } else {
-        glob(target, start);
-    }
+    globArrayConcat(target, function(result) {
+        start(null,result);
+    });
 
     function start(err, files) {
         if(err) throw (err);
@@ -64,7 +61,7 @@ function FrontNote(target,option,callback) {
         // 外部ファイルを１つずつ読み込み
         async.forEachSeries(files, function(file, callback) {
             fs.readFile(file, 'utf8',function (err, res) {
-                if (err) throw err;
+                if (err) throw(err);
                 if (options.verbose) {
                     echoLog('Read',file);
                 }
@@ -390,13 +387,34 @@ function generateIncludeCss(arr) {
 function generateIncludeScript(arr) {
     if (!arr) return '';
     if (typeof arr === 'string') {
-        return '<script src="'+arr+'"></script>'
+        return '<script src="'+arr+'"></script>';
     }
     var result = [];
     for (var i = 0,len = arr.length; i < len; i++) {
         result.push('<script src="'+arr[i]+'"></script>');
     }
     return result.join('\n');
+}
+
+/**
+ * globパターン文字列または配列からファイルパスの配列を生成
+ * @param arr{string|array}
+ * @param callback
+ */
+function globArrayConcat(arr,callback) {
+    var result = [];
+    if (arr instanceof Array === false) {
+        arr = [arr];
+    }
+    async.each(arr, function(pattern,next) {
+        glob(pattern, function(err,files) {
+            if (err) throw err;
+            result = result.concat(files);
+            next();
+        });
+    }, function() {
+        callback(result);
+    });
 }
 
 // プラグイン関数をエクスポート

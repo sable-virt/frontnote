@@ -6,7 +6,7 @@ StyleGuide Generator
 Node.jsを使ったスタイルガイドジェネレーター
 
 ## Version - バージョン
-0.0.2
+0.0.3
 
 ## Usage - 使い方
 
@@ -121,10 +121,3 @@ Default value: `false`
 Display a detailed log
 
 ログを詳細に表示します
-
-
-
-## Todo
-
-* CSS,JSのincludeをminimatchパスで指定できるように
-* READMEファイルの拡充
