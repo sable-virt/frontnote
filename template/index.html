@@ -16,7 +16,6 @@
     <nav class="fn-sidebar">
         <a href="./" class="fn-menu<%if(overview){%> fn-is-active<%}%>">Overview</a>
         <!-- 全ファイル -->
-
         <% files.forEach(function(file) { %>
         <!-- スタイルガイドへのリンク -->
         <a href="<%- file.url %>" class="fn-menu<%if(helpers.isCurrent(current,file)){%> fn-is-active<%}%>"><%- file.fileName %></a>
@@ -38,12 +37,10 @@
                         <% if(section.attributes) { %>
                             <ul class="fn-attribute">
                             <% section.attributes.forEach(function(attribute) {%>
-                                <% if(attribute === 'duplicated') {%>
+                                <% if(attribute.toLowerCase() === 'deprecated' || attribute === '非推奨') {%>
                                     <li class="fn-attribute-item fn-attribute-deprecated"><%-attribute%></li>
-                                <% } else if(attribute === 'mixin'){ %>
-                                    <li class="fn-attribute-item fn-attribute-mixin"><%-attribute%></li>
-                                <% } else if(attribute === 'private') { %>
-                                    <li class="fn-attribute-item fn-attribute-private"><%-attribute%></li>
+                                <% } else if(attribute.toLowerCase() === 'todo') { %>
+                                    <li class="fn-attribute-item fn-attribute-todo"><%-attribute%></li>
                                 <% } else { %>
                                     <li class="fn-attribute-item"><%-attribute%></li>
                                 <% } %>
