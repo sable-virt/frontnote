@@ -56,6 +56,16 @@ Call this function when generated style guide.
 
 ## Option - オプション
 
+### options.title
+Type: `String`
+Default value: `StyleGuide`
+
+Title of StyleGuide.
+
+スタイルガイドのタイトル
+
+ログを詳細に表示します
+
 ### options.overview
 Type: `String`
 Default value: `__dirname + '/styleguide.md''`
@@ -116,7 +126,5 @@ Display a detailed log
 
 ## Todo
 
-* タイトルをオプションから設定できるように
 * CSS,JSのincludeをminimatchパスで指定できるように
 * READMEファイルの拡充
-* 各プラグインのオプションを１カ所に集約

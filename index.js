@@ -27,6 +27,7 @@ var OPTIONS = {
     css: './style.css',
     script: null,
     out: './guide',
+    title: 'StyleGuide',
     verbose: false
 };
 
@@ -210,6 +211,7 @@ function createStyleGuide(data,options,callback) {
                 }
                 //EJSを使ってテンプレートレンダリング
                 var rendered = ejs.render(template, {
+                    title: options.title,
                     current: md.parse(res),
                     files: data,
                     overview: true,
@@ -232,6 +234,7 @@ function createStyleGuide(data,options,callback) {
             async.eachSeries(data,function(section,next) {
                 //EJSを使ってテンプレートレンダリング
                 var rend = ejs.render(template, {
+                    title: options.title,
                     current: section,
                     files: data,
                     overview: false,
