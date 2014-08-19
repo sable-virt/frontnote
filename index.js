@@ -6,7 +6,7 @@ var path = require('path'),
     md = require("github-flavored-markdown"),
     extend = require('util-extend');
 
-var VERSION = '0.0.3';
+var VERSION = '0.0.4';
 
 var PATTERNS = {
     comment: /\/\*\s*s?#styleguide([^*]|\*[^/])*\*\//g,
@@ -22,12 +22,14 @@ var PATTERNS = {
 var OPTIONS = {
     overview: __dirname + '/styleguide.md',
     template: __dirname + '/template/index.html',
+    cwd: '',
     includeAssetPath: 'assets/**/*',
     css: './style.css',
     script: null,
     out: './guide',
     title: 'StyleGuide',
-    verbose: false
+    verbose: false,
+    clean: false
 };
 
 var HELPERS = {
@@ -55,7 +57,7 @@ function FrontNote(target,option,callback) {
     options = extend(options,option);
     options.out = path.resolve(options.out);
 
-    globArrayConcat(target, function(result) {
+    globArrayConcat(target,options, function(result) {
         start(null,result);
     });
 
@@ -84,10 +86,14 @@ function FrontNote(target,option,callback) {
                 }
                 if(overview || comments) {
                     var fileName = path.basename(file,path.extname(file));
+                    var relPath = path.relative(__dirname + '/' + options.cwd, path.dirname(file));
+                    if (relPath) {
+                        relPath = relPath.replace(/\//g,'-') + '-';
+                    }
                     data.push({
                         file: file,
                         fileName: fileName,
-                        url: fileName + '.html',
+                        url: relPath + fileName + '.html',
                         dirs: file.split(path.sep),
                         ext: path.extname(file),
                         sections: comments,
@@ -192,6 +198,14 @@ function filterPattern(str,pattern,trim) {
  */
 function createStyleGuide(data,options,callback) {
     async.waterfall([
+        //出力先削除
+        function(callback) {
+            if (options.clean) {
+                fs.remove(options.out,callback);
+            } else {
+                callback();
+            }
+        },
         //テンプレート読み込み
         function(callback) {
             //テンプレートファイルの読み込み
@@ -248,7 +262,7 @@ function createStyleGuide(data,options,callback) {
                     echoLog('Render',section.file);
                 }
                 //スタイルガイド出力
-                fs.writeFile(options.out + '/' + section.fileName + '.html', rend, function (err) {
+                fs.outputFile(options.out + '/' + section.url, rend, function (err) {
                     if (err) throw err;
                     if (options.verbose) {
                         echoLog('Write',options.out + '/' + section.fileName + '.html');
@@ -406,13 +420,17 @@ function generateIncludeScript(arr) {
  * @param arr{string|array}
  * @param callback
  */
-function globArrayConcat(arr,callback) {
+function globArrayConcat(arr,options,callback) {
     var result = [];
     if (arr instanceof Array === false) {
         arr = [arr];
     }
+    var cwd = '';
+    if (options.cwd) {
+        cwd = options.cwd + '/';
+    }
     async.each(arr, function(pattern,next) {
-        glob(pattern, function(err,files) {
+        glob(cwd + pattern, function(err,files) {
             if (err) throw err;
             result = result.concat(files);
             next();
