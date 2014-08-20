@@ -88,7 +88,7 @@ function FrontNote(target,option,callback) {
                     var fileName = path.basename(file,path.extname(file));
                     var relPath = path.relative(__dirname + '/' + options.cwd, path.dirname(file));
                     if (relPath) {
-                        relPath = relPath.replace(/\//g,'-') + '-';
+                        relPath = relPath.replace(/\.\.\//g,'').replace(/\//g,'-') + '-';
                     }
                     data.push({
                         file: file,
