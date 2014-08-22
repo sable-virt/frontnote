@@ -29,20 +29,20 @@
         <% } else { %>
             <h2 class="fn-heading2">
                 <% if (current.overview) { %>
-                    <%=current.overview.title%>
+                    <%-current.overview.title%>
                 <% } else { %>
-                    <%=current.fileName%>
+                    <%-current.fileName%>
                 <% } %>
-                <small class="fn-sub-heading"><%=current.file%></small>
+                <small class="fn-sub-heading"><%-current.file%></small>
             </h2>
             <% if (current.overview) { %>
-                <p class="fn-comment"><%=current.overview.comment%></p>
+                <p class="fn-comment"><%-current.overview.comment%></p>
             <% } %>
             <% if(current.sections) { %>
                 <% current.sections.forEach(function(section) { %>
                     <article class="fn-article">
-                        <h3 class="fn-heading3"><%= section.title %></h3>
-                        <p class="fn-comment"><%= section.comment %></p>
+                        <h3 class="fn-heading3"><%- section.title %></h3>
+                        <p class="fn-comment"><%- section.comment %></p>
                         <% if(section.attributes) { %>
                             <ul class="fn-attribute">
                             <% section.attributes.forEach(function(attribute) {%>
