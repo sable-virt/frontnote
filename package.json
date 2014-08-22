@@ -1,6 +1,6 @@
 {
   "name": "frontnote",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "StyleGuide Generator FrontNote",
   "license": "MIT",
   "repository": {
@@ -28,10 +28,10 @@
     "fs-extra": "^0.11.0",
     "github-flavored-markdown": "^1.0.1",
     "glob": "^4.0.5",
+    "sanitizer": "^0.1.2",
     "util-extend": "^1.0.1"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "bugs": {
     "url": "https://github.com/frontainer/frontnote/issues"
   },
