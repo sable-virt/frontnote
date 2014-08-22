@@ -6,7 +6,7 @@ StyleGuide Generator
 Node.jsを使ったスタイルガイドジェネレーター
 
 ## Version - バージョン
-0.0.4
+0.0.5
 
 ## Usage - 使い方
 
@@ -24,6 +24,11 @@ frontNote('path/**/*.css',{
     clean: true
 });
 ```
+
+## Plugins - プラグイン
+
+* Grunt - [grunt-frontnote](https://www.npmjs.org/package/grunt-frontnote)
+* Gulp - [gulp-frontnote](https://www.npmjs.org/package/gulp-frontnote)
 
 ## API
 
