@@ -4,7 +4,8 @@ var path = require('path'),
     fs = require('fs-extra'),//require('fs'),
     ejs = require('ejs'),
     md = require("github-flavored-markdown"),
-    extend = require('util-extend');
+    extend = require('util-extend'),
+    sanitizer = require('sanitizer');
 
 var VERSION = '0.0.4';
 
@@ -154,19 +155,19 @@ function parseComment(comment) {
         var line = lines[i];
         if (!hasTitle) {
             if (line) {
-                result.title.push(line);
+                result.title.push(sanitizer.escape(line));
             } else if(result.title.length !== 0) {
                 hasTitle = true;
             }
         } else if (line) {
-            result.comment.push(line);
+            result.comment.push(sanitizer.escape(line));
         }
     }
     result.title = result.title.join('<br>');
     result.comment = result.comment.join('<br>');
 
     for (i = 0, len = result.attributes.length; i < len; i++) {
-        result.attributes[i] = result.attributes[i].replace(PATTERNS.attrPrefix,'');
+        result.attributes[i] = sanitizer.escape(result.attributes[i].replace(PATTERNS.attrPrefix,''));
     }
 
     return result;
