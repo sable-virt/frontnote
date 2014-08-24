@@ -38,6 +38,17 @@
         <% if (current.overview) { %>
         <p class="fn-comment"><%-current.overview.comment%></p>
         <% } %>
+
+        <% if(current.colors) { %>
+        <% current.colors.forEach(function(color) { %>
+        <div class="fn-color-pallet">
+            <h3 class="fn-heading3"><%- color.name %></h3>
+            <p class="fn-comment"><%- color.color %></p>
+            <div class="fn-color-panel" style="background-color:<%-color.color%>"></div>
+        </div>
+        <% }); %>
+        <% } %>
+
         <% if(current.sections) { %>
         <% current.sections.forEach(function(section) { %>
         <article class="fn-article">
@@ -71,7 +82,7 @@
 </div>
 <script src="assets/lib/jquery.js"></script>
 <script src="assets/lib/jquery.mousewheel.js"></script>
-<script src="assets/lib/rainbow-custom.min.js"></script>
+<script src="assets/lib/highlight.pack.js"></script>
 <script src="assets/js/ripple-effect.js"></script>
 <script src="assets/js/main.js"></script>
 <%- script %>
