@@ -5,9 +5,10 @@ var path = require('path'),
     ejs = require('ejs'),
     md = require("github-flavored-markdown"),
     extend = require('util-extend'),
-    sanitizer = require('sanitizer');
+    sanitizer = require('sanitizer'),
+    package = require('./package.json');
 
-var VERSION = '0.0.8';
+var VERSION = package.version;
 
 var PATTERNS = {
     comment: /\/\*\s*s?#styleguide([^*]|\*[^/])*\*\//g,
