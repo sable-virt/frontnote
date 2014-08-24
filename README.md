@@ -157,3 +157,49 @@ frontnote(['**/*.less'],{
 ## Template - テンプレート
 
 [frontnote-template](https://github.com/frontainer/frontnote-template)
+
+## Comment Style - コメントの書き方
+
+### File overview - ファイル概要
+
+Only 1 comment block in a file.
+１ファイルに１つき１ブロックだけ記述できます。
+
+```
+/*
+#overview
+fileoverview title
+
+fileoverview comment
+*/
+```
+
+### Section - セクション
+
+/*
+#styleguide
+style title
+
+style comment.
+
+@depulicated
+@非推奨
+@todo
+@your-attribute
+
+```
+sample code here.
+```
+*/
+
+
+### Color Pallet - カラーパレット
+
+/*
+#colors
+
+@primary #996600
+@secondary #333
+@color-name color-code
+
+*/
