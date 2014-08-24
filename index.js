@@ -7,11 +7,13 @@ var path = require('path'),
     extend = require('util-extend'),
     sanitizer = require('sanitizer');
 
-var VERSION = '0.0.4';
+var VERSION = '0.0.8';
 
 var PATTERNS = {
     comment: /\/\*\s*s?#styleguide([^*]|\*[^/])*\*\//g,
     overview: /\/\*\s*s?#overview([^*]|\*[^/])*\*\//g,
+    colors: /\/\*\s*s?#colors([^*]|\*[^/])*\*\//g,
+    color: /@(.+)\s{1}(.+)$/,
     splitter: /\n/,
     prefix: /^ *\/?\**(#styleguide|#overview)?\/? */gm,
     line: /^\s*$/gm,
@@ -81,11 +83,17 @@ function FrontNote(target,option,callback) {
                         overview = overview[0];
                     }
                 }
+
+                var colors = res.match(PATTERNS.colors);
+                if (colors) {
+                    colors = parseColors(colors);
+                }
+
                 var comments = res.match(PATTERNS.comment);
                 if (comments) {
                     comments = parseComments(comments);
                 }
-                if(overview || comments) {
+                if(overview || comments || colors) {
                     var fileName = path.basename(file,path.extname(file));
                     var relPath = path.relative(__dirname + '/' + options.cwd, path.dirname(file));
                     if (relPath) {
@@ -98,7 +106,8 @@ function FrontNote(target,option,callback) {
                         dirs: file.split(path.sep),
                         ext: path.extname(file),
                         sections: comments,
-                        overview: overview
+                        overview: overview,
+                        colors: colors
                     });
                 }
                 callback();
@@ -119,7 +128,45 @@ function parseComments(comments) {
     var result = [];
     for (var i = 0, len = comments.length; i < len; i++) {
         var com = parseComment(comments[i]);
-        result.push(com);
+        if (com) {
+            result.push(com);
+        }
+    }
+    return result;
+}
+
+/**
+ * カラーコメントの塊をパースする
+ * @param colors
+ * @returns {Array}
+ */
+function parseColors(colors) {
+    var result = [];
+    for (var i = 0, len = colors.length; i < len; i++) {
+        var color = parseColor(colors[i]);
+        if (color) {
+            result = result.concat(color);
+        }
+    }
+    return result;
+}
+/**
+ * カラーコメントパースする
+ * @param color
+ * @returns {Array}
+ */
+function parseColor(color) {
+    var colors = filterPattern(color,PATTERNS.attr,false),
+        result = [];
+    for(var i = 0,len = colors.length; i < len; i++) {
+        var matches = colors[i].match(PATTERNS.color);
+        if (matches.length > 2) {
+            result.push({
+                value: matches[0],
+                name: matches[1],
+                color: matches[2]
+            });
+        }
     }
     return result;
 }
@@ -130,7 +177,7 @@ function parseComments(comments) {
  * @returns {{title: Array, comment: Array, attributes: (*|Array), markdown: *, html: *, code: *}}
  */
 function parseComment(comment) {
-    var comment = comment.replace(PATTERNS.guide,'').replace(PATTERNS.prefix,'');
+    comment = comment.replace(PATTERNS.prefix,'');
 
     // 属性
     var attrs = filterPattern(comment,PATTERNS.attr,false);
