@@ -26,7 +26,6 @@ var PATTERNS = {
 var OPTIONS = {
     overview: __dirname + '/styleguide.md',
     template: __dirname + '/template/index.html',
-    cwd: '',
     includeAssetPath: 'assets/**/*',
     css: './style.css',
     script: null,
@@ -61,7 +60,7 @@ function FrontNote(target,option,callback) {
     options = extend(options,option);
     options.out = path.resolve(options.out);
 
-    globArrayConcat(target,options, function(result) {
+    globArrayConcat(target, function(result) {
         start(null,result);
     });
 
@@ -96,7 +95,7 @@ function FrontNote(target,option,callback) {
                 }
                 if(overview || comments || colors) {
                     var fileName = path.basename(file,path.extname(file));
-                    var relPath = path.relative(__dirname + '/' + options.cwd, path.dirname(file));
+                    var relPath = path.relative(__dirname, path.dirname(file));
                     if (relPath) {
                         relPath = relPath.replace(/\.\.\//g,'').replace(/\//g,'-') + '-';
                     }
@@ -469,17 +468,13 @@ function generateIncludeScript(arr) {
  * @param arr{string|array}
  * @param callback
  */
-function globArrayConcat(arr,options,callback) {
+function globArrayConcat(arr,callback) {
     var result = [];
     if (arr instanceof Array === false) {
         arr = [arr];
     }
-    var cwd = '';
-    if (options.cwd) {
-        cwd = options.cwd + '/';
-    }
     async.each(arr, function(pattern,next) {
-        glob(cwd + pattern, function(err,files) {
+        glob(pattern, function(err,files) {
             if (err) throw err;
             result = result.concat(files);
             next();

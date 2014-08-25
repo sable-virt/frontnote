@@ -6,7 +6,7 @@ StyleGuide Generator
 Node.jsを使ったスタイルガイドジェネレーター
 
 ## Version - バージョン
-0.0.9
+0.0.10
 
 ## Usage - 使い方
 
@@ -20,7 +20,6 @@ npm install frontnote --save
 var frontNote = require('frontnote');
 frontNote('path/**/*.css',{
 	out: './docs',
-	cwd: 'sass/sample',
     clean: true
 });
 ```
@@ -120,14 +119,6 @@ Default value: `null`
 Path of JS that you want to read in HTML. In the array or string.
 
 HTMLに読み込みたいJSのパス。文字列または配列で指定します。
-
-### options.cwd
-Type: `String`
-Default value: `''`
-
-cwd All src matches are relative to this path.
-
-指定したパスから相対的にマッチするファイルを読み込みます。
 
 ### options.clean
 Type: `Boolean`
