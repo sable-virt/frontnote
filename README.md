@@ -6,7 +6,7 @@ StyleGuide Generator
 Node.jsを使ったスタイルガイドジェネレーター
 
 ## Version - バージョン
-0.0.10
+0.0.11
 
 ## Usage - 使い方
 
