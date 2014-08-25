@@ -6,7 +6,7 @@ var path = require('path'),
     md = require("github-flavored-markdown"),
     extend = require('util-extend'),
     sanitizer = require('sanitizer'),
-    package = require('./package.json');
+    package = require(__dirname + '/package.json');
 
 var VERSION = package.version;
 
