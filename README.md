@@ -6,21 +6,20 @@ StyleGuide Generator
 Node.jsを使ったスタイルガイドジェネレーター
 
 ## Version - バージョン
-0.0.13
+0.1.0
 
 ## Usage - 使い方
 
 First, install `frontnote`:
 
 ```shell
-npm install frontnote --save
+npm install frontnote --save-dev
 ```
 
 ```shell
 var frontNote = require('frontnote');
 frontNote('path/**/*.css',{
-	out: './docs',
-    clean: true
+	out: './docs'
 });
 ```
 
@@ -37,10 +36,10 @@ frontNote('path/**/*.css',{
 @Required  
 Type: `String | Array`  
 Pattern to be matched.  
-Please see the minimatch documentation for more details.
+Please see the [minimatch](https://github.com/isaacs/minimatch) documentation for more details.
 
 マッチさせたいパターン  
-詳しくはminimatchのドキュメントをご覧ください。
+詳しくは[minimatch](https://github.com/isaacs/minimatch)のドキュメントをご覧ください。
 
 #### options
 Type: `Object`
@@ -149,48 +148,52 @@ frontnote(['**/*.less'],{
 
 [frontnote-template](https://github.com/frontainer/frontnote-template)
 
+テンプレートはfrontnote-templateを参考にカスタマイズできます
+
 ## Comment Style - コメントの書き方
 
 ### File overview - ファイル概要
 
-Only 1 comment block in a file.
+Only 1 comment block in a file.  
 １ファイルに１つき１ブロックだけ記述できます。
 
-```
-/*
-#overview
-fileoverview title
-
-fileoverview comment
-*/
-```
+	/*
+	#overview
+	fileoverview title
+	
+	fileoverview comment
+	*/
 
 ### Section - セクション
 
-/*
-#styleguide
-style title
+各スタイルごとに記述します。  
+@をつけることでスタイルに任意のラベルをつけることができます。
+	
+	/*
+	#styleguide
+	style title
 
-style comment.
+	style comment.
 
-@depulicated
-@非推奨
-@todo
-@your-attribute
+	@depulicated
+	@非推奨
+	@todo
+	@your-attribute
 
-```
-sample code here.
-```
-*/
+	```
+	sample code here.
+	```
+	*/
 
 
 ### Color Pallet - カラーパレット
 
-/*
-#colors
+スタイルで使われているカラーガイドを作成します。  
 
-@primary #996600
-@secondary #333
-@color-name color-code
+	/*
+	#colors
 
-*/
+	@primary #996600
+	@secondary #333
+	@color-name color-code
+	*/
