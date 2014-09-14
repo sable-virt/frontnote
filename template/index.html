@@ -19,7 +19,13 @@
         <!-- 全ファイル -->
         <% files.forEach(function(file) { %>
         <!-- スタイルガイドへのリンク -->
-        <a href="<%- file.url %>" class="fn-menu<%if(helpers.isCurrent(current,file)){%> fn-is-active<%}%>"><%- file.fileName %></a>
+        <a href="<%- file.url %>" class="fn-menu<%if(helpers.isCurrent(current,file)){%> fn-is-active<%}%>">
+            <% if (file.overview) { %>
+                <%- file.overview.title %>
+            <% } else { %>
+                <%- file.fileName %>
+            <% } %>
+        </a>
         <% }) %>
     </nav>
     <section class="fn-content">
