@@ -29,9 +29,11 @@
     "github-flavored-markdown": "^1.0.1",
     "glob": "^4.0.5",
     "sanitizer": "^0.1.2",
-    "util-extend": "^1.0.1"
+    "util-extend": "^1.0.1",
+    "memory-cache": "0.0.5"
   },
-  "devDependencies": {},
+  "devDependencies": {
+  },
   "bugs": {
     "url": "https://github.com/frontainer/frontnote/issues"
   },
