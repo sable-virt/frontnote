@@ -6,6 +6,7 @@ var path = require('path'),
     md = require("github-flavored-markdown"),
     extend = require('util-extend'),
     sanitizer = require('sanitizer'),
+    cache = require('memory-cache'),
     package = require(__dirname + '/package.json');
 
 var VERSION = package.version;
@@ -32,7 +33,8 @@ var OPTIONS = {
     out: './guide',
     title: 'StyleGuide',
     verbose: false,
-    clean: false
+    clean: false,
+    cache: true
 };
 
 var HELPERS = {
@@ -74,6 +76,15 @@ function FrontNote(target,option,callback) {
                 if (err) throw(err);
                 if (options.verbose) {
                     echoLog('Read',file);
+                }
+
+                if (options.cache && !options.clean) {
+                    var cacheData = cache.get(file);
+                    if (cacheData === res) {
+                        echoLog('Cached',file);
+                        return callback();
+                    }
+                    cache.put(file,res);
                 }
 
                 var overview = res.match(PATTERNS.overview);
@@ -306,9 +317,7 @@ function createStyleGuide(data,options,callback) {
                     css: generateIncludeCss(options.css),
                     script: generateIncludeScript(options.script)
                 });
-                if (options.verbose) {
-                    echoLog('Render',section.file);
-                }
+                echoLog('Output',section.file);
                 //スタイルガイド出力
                 fs.outputFile(options.out + '/' + section.url, rend, function (err) {
                     if (err) throw err;
