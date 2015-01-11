@@ -422,7 +422,7 @@ function copyFiles(files,options,callback) {
  * @param color
  */
 function echoLog(label,text,color) {
-    var defaultColor = '\u001b[30m'; //black
+    var defaultColor = '\u001b[0m'; //console's defaultColor
     var colorCode = defaultColor;
     switch(color) {
         case 'red':
