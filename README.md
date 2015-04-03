@@ -1,4 +1,4 @@
-# FrontNote
+# FrontNote [![Build Status](https://travis-ci.org/frontainer/frontnote.svg)](https://travis-ci.org/frontainer/frontnote)
 
 ![FrontNote](http://frontainer.com/images/frontnote.png)
 
