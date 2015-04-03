@@ -1,6 +1,6 @@
 {
   "name": "frontnote",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "StyleGuide Generator FrontNote",
   "license": "MIT",
   "repository": {
@@ -12,7 +12,7 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": ""
+    "test": "./node_modules/.bin/mocha --timeout 10000 --require intelli-espower-loader ./test/frontnote.js"
   },
   "keywords": [
     "styleguide",
@@ -24,15 +24,20 @@
   ],
   "dependencies": {
     "async": "^0.9.0",
+    "colors": "^1.0.3",
     "ejs": "^1.0.0",
     "fs-extra": "^0.11.0",
     "github-flavored-markdown": "^1.0.1",
     "glob": "^4.0.5",
+    "memory-cache": "0.0.5",
     "sanitizer": "^0.1.2",
-    "util-extend": "^1.0.1",
-    "memory-cache": "0.0.5"
+    "util-extend": "^1.0.1"
   },
   "devDependencies": {
+    "espower-loader": "^0.10.0",
+    "intelli-espower-loader": "^0.6.0",
+    "mocha": "^2.2.1",
+    "power-assert": "^0.10.2"
   },
   "bugs": {
     "url": "https://github.com/frontainer/frontnote/issues"
