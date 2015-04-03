@@ -1,4 +1,4 @@
-# FrontNote [![Build Status](https://travis-ci.org/frontainer/frontnote.svg)](https://travis-ci.org/frontainer/frontnote)
+# FrontNote [![GitHub version](https://badge.fury.io/gh/frontainer%2Ffrontnote.svg)](http://badge.fury.io/gh/frontainer%2Ffrontnote) [![Build Status](https://travis-ci.org/frontainer/frontnote.svg)](https://travis-ci.org/frontainer/frontnote)
 
 ![FrontNote](http://frontainer.com/images/frontnote.png)
 
