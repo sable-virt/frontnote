@@ -1,7 +1,25 @@
 var assert = require('power-assert');
+var fs = require('fs');
+
 var FrontNote = require('../lib/frontnote');
 var File = require('../lib/file/file');
-var files = ["test/sass/sample.scss","test/sass/sample2.scss"];
+var files = [
+    './guide/index.html',
+    './guide/test-sass-sample.html',
+    './guide/assets/js/main.js',
+    './guide/assets/js/ripple-effect.js',
+    './guide/assets/css/style.css',
+    './guide/assets/fonts/fontawesome-webfont.ttf',
+    './guide/assets/fonts/fontawesome-webfont.eot',
+    './guide/assets/fonts/FontAwesome.otf',
+    './guide/assets/fonts/fontawesome-webfont.svg',
+    './guide/assets/fonts/fontawesome-webfont.woff',
+    './guide/assets/images/favicon.ico',
+    './guide/assets/images/frontnote.png',
+    './guide/assets/lib/highlight.pack.js',
+    './guide/assets/lib/jquery.js',
+    './guide/assets/lib/jquery.mousewheel.js'
+];
 
 require('./file/file')();
 require('./parser/parser')();
@@ -11,7 +29,7 @@ require('./render/render')();
 describe('frontnote', function() {
     var frontnote;
     beforeEach(function() {
-        frontnote = new FrontNote();
+        frontnote = new FrontNote({clean:true});
     });
     it('init', function() {
         assert.deepEqual(frontnote.options,{
@@ -23,8 +41,18 @@ describe('frontnote', function() {
             out: process.cwd() + '/guide',
             title: 'StyleGuide',
             verbose: false,
-            clean: false,
+            clean: true,
             cache: true
+        });
+    });
+
+
+    it('parseFilesExists', function(done) {
+        frontnote.render('./test/sass/sample.scss',function() {
+            for (var i = 0, len = files.length; i < len; i++) {
+               assert(fs.existsSync(files[i]) === true);
+            }
+            done();
         });
     });
 });
