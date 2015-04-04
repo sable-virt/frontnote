@@ -16,10 +16,13 @@ First, install `frontnote`:
 npm install frontnote --save-dev
 ```
 
-```shell
-var frontNote = require('frontnote');
-frontNote('path/**/*.css',{
+```js
+var FrontNote = require('frontnote');
+var note = new FrontNote({
 	out: './docs'
+});
+note.render('path/**/*.css', function() {
+	//callback
 });
 ```
 
@@ -134,15 +137,6 @@ Default value: `false`
 Display a detailed log
 
 ログを詳細に表示します
-
-## Usage - 使い方
-
-```
-var frontnote = require('frontnote');
-frontnote(['**/*.less'],{
-
-});
-```
 
 ## Template - テンプレート
 
