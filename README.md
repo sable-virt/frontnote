@@ -6,7 +6,7 @@ StyleGuide Generator
 Node.jsを使ったスタイルガイドジェネレーター
 
 ## Version - バージョン
-0.2.0
+1.0.0
 
 ## Usage - 使い方
 
@@ -33,7 +33,19 @@ note.render('path/**/*.css', function() {
 
 ## API
 
-### FrontNote(pattern,options,callback);
+### FrontNote(options);
+
+#### options
+Type: `Object`
+Default value: `{}`
+
+Option.
+Please see options section for more information.
+
+オプション
+詳しくはオプションの項をご覧ください。
+
+### note.render(files,callback);
 
 #### files
 @Required  
@@ -43,16 +55,6 @@ Please see the [minimatch](https://github.com/isaacs/minimatch) documentation fo
 
 マッチさせたいパターン  
 詳しくは[minimatch](https://github.com/isaacs/minimatch)のドキュメントをご覧ください。
-
-#### options
-Type: `Object`
-Default value: `{}`
-
-Option.  
-Please see options section for more information.
-
-オプション  
-詳しくはオプションの項をご覧ください。
 
 #### callback
 Type: `Function`
@@ -191,3 +193,38 @@ Only 1 comment block in a file.
 	@secondary #333
 	@color-name color-code
 	*/
+
+
+## Difference of version 1.x and 0.x - バージョン1.xと0.xの違い
+
+- Some breaking changes - いくつかの仕様変更
+- New public function - 新しい関数の追加
+ - render(filepath,callback);
+- Refactor to Testable code(Mocha testing) - テスタブルなコードにリファクタリング(Mochaによるテスト)
+- Enabled callback function - コールバック関数を実行できるようになった
+- Minor bug fix - 軽微な不具合の修正
+
+### Breaking changes - 仕様変更
+
+#### Change timing of output files.
+
+##### version 0.x
+
+```
+var frontNote = require('frontnote');
+frontNote('path/**/*.css',{
+    out: './docs'
+});	// <- Immediately output files.
+```
+
+##### version 1.x
+
+```
+var FrontNote = require('frontnote');
+var note = new FrontNote({
+    out: './docs'
+});
+note.render('path/**/*.css',function() { //<- output files.
+	// callback
+});
+```
