@@ -21,6 +21,8 @@ var files = [
     './guide/assets/lib/jquery.mousewheel.js'
 ];
 
+
+require('./const/pattern')();
 require('./file/file')();
 require('./parser/parser')();
 require('./helper/template-helper')();
