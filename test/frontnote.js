@@ -33,8 +33,8 @@ describe('frontnote', function() {
     });
     it('init', function() {
         assert.deepEqual(frontnote.options,{
-            overview: process.cwd() + '/styleguide.md',
-            template: process.cwd() + '/template/index.html',
+            overview: process.cwd() + '/lib/../styleguide.md',
+            template: process.cwd() + '/lib/../template/index.html',
             includeAssetPath: 'assets/**/*',
             css: './style.css',
             script: null,
