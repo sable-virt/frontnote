@@ -162,8 +162,11 @@ Only 1 comment block in a file.
 
 ### Section - セクション
 
+Section of style guide.
+'@' means attribute of this section. (ex. @duplicated @todo)
+
 各スタイルごとに記述します。  
-@をつけることでスタイルに任意のラベルをつけることができます。
+@をつけるとこのセクションに属性ラベルをつけることができます（例: @非推奨, $todo）
 	
 	/*
 	#styleguide
@@ -184,7 +187,8 @@ Only 1 comment block in a file.
 
 ### Color Pallet - カラーパレット
 
-スタイルで使われているカラーガイドを作成します。  
+Create color guide
+カラーガイドを作成します。
 
 	/*
 	#colors
