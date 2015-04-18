@@ -1,4 +1,7 @@
-# FrontNote [![GitHub version](https://badge.fury.io/gh/frontainer%2Ffrontnote.svg)](http://badge.fury.io/gh/frontainer%2Ffrontnote) [![Build Status](https://travis-ci.org/frontainer/frontnote.svg)](https://travis-ci.org/frontainer/frontnote)
+# FrontNote
+[![GitHub version](https://badge.fury.io/gh/frontainer%2Ffrontnote.svg)](http://badge.fury.io/gh/frontainer%2Ffrontnote)
+[![Build Status](https://travis-ci.org/frontainer/frontnote.svg)](https://travis-ci.org/frontainer/frontnote)
+[![Code Climate](https://codeclimate.com/github/frontainer/frontnote/badges/gpa.svg)](https://codeclimate.com/github/frontainer/frontnote)
 
 ![FrontNote](http://frontainer.com/images/frontnote.png)
 
