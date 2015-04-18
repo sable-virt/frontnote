@@ -36,6 +36,7 @@
   "devDependencies": {
     "espower-loader": "^0.10.0",
     "intelli-espower-loader": "^0.6.0",
+    "istanbul": "^0.3.13",
     "mocha": "^2.2.4",
     "power-assert": "^0.10.2"
   },
