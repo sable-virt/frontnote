@@ -62,6 +62,15 @@ describe('frontnote', function() {
         });
     });
 
+    it('cache render', function(done) {
+        frontnote.render('./test/sass/*.scss',function() {
+            for (var i = 0, len = files.length; i < len; i++) {
+                assert(fs.existsSync(files[i]));
+            }
+            done();
+        });
+    });
+
     it('verbose & clean & array asset path', function(done) {
         frontnote = new FrontNote({
             clean: true,
