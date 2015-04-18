@@ -1,0 +1,6 @@
+instrumentation:
+  excludes: ['node_modules']
+reporting:
+  #print: none
+  reports:
+    - html

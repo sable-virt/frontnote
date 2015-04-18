@@ -12,7 +12,7 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "./node_modules/.bin/mocha --timeout 10000 --require intelli-espower-loader ./test/frontnote.js"
+    "test": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --require intelli-espower-loader -R spec ./test/frontnote.js"
   },
   "keywords": [
     "styleguide",
