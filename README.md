@@ -206,6 +206,7 @@ Create color guide
  - render(filepath,callback);
 - Refactor to Testable code(Mocha testing) - テスタブルなコードにリファクタリング(Mochaによるテスト)
 - Enabled callback function - コールバック関数を実行できるようになった
+- Check coverage - カバレッジのチェックを追加
 - Minor bug fix - 軽微な不具合の修正
 
 ### Breaking changes - 仕様変更

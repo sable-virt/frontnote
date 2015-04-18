@@ -25,6 +25,7 @@ require('./file/file')();
 require('./parser/parser')();
 require('./helper/template-helper')();
 require('./render/render')();
+require('./debug/debug')();
 
 describe('frontnote', function() {
     var frontnote;
