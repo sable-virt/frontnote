@@ -233,3 +233,10 @@ note.render('path/**/*.css',function() { //<- output files.
 	// callback
 });
 ```
+
+## Test
+
+```
+npm install
+npm test
+```
