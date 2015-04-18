@@ -17,6 +17,12 @@ module.exports = function() {
                 done();
             });
         });
+        it('globArrayConcat with array', function(done) {
+            File.globArrayConcat(['test/sass/empty.scss','test/sass/sample.scss'],function(err,result) {
+                assert.deepEqual(result,files);
+                done();
+            });
+        });
         it('getAllFiles', function(done) {
             File.getAllFiles(files,function(err,result) {
                 assert(result.length === 2);
