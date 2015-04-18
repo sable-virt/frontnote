@@ -4,6 +4,11 @@ node_js:
 - iojs
 - '0.12'
 - '0.10'
+addons:
+  code_climate:
+    repo_token: 3b1b8a63197add999a34a21b2ec13ae89f37338e4f9deba54c4d55ad445f3425
+after_script:
+  - codeclimate < lcov.info
 notifications:
   slack:
     secure: U3U8YuPeFmE64C9W0eRW4z2Tnz7eOwVIvEAb0Fh6+Kfr3zKvqeyY1VItkEOUpZSP9M7Rw5TF/7yRpQgRTSfyW2Up+xYEOiSWq9NrOcGAgiLh9AwwRXoEUv12eCVsJvmg+XPAExc2O1eFKVlp0gMiyihFSPh+7ky23Ms0fs69M+8=
