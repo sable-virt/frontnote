@@ -20,8 +20,6 @@ var files = [
     './guide/assets/lib/jquery.js',
     './guide/assets/lib/jquery.mousewheel.js'
 ];
-
-
 require('./const/pattern')();
 require('./file/file')();
 require('./parser/parser')();
