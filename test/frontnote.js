@@ -59,7 +59,7 @@ describe('frontnote', function() {
 
     it('verbose', function(done) {
         frontnote = new FrontNote({verbose: true});
-        frontnote.render('./test/sass/sample.scss',function() {
+        frontnote.render('./test/sass/sample2.scss',function() {
             for (var i = 0, len = files.length; i < len; i++) {
                 assert(fs.existsSync(files[i]) === true);
             }
