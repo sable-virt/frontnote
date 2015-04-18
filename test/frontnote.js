@@ -30,7 +30,7 @@ require('./debug/debug')();
 describe('frontnote', function() {
     var frontnote;
     beforeEach(function() {
-        frontnote = new FrontNote({clean:true});
+        frontnote = new FrontNote();
     });
     it('init', function() {
         assert.deepEqual(frontnote.options,{
@@ -42,29 +42,31 @@ describe('frontnote', function() {
             out: process.cwd() + '/guide',
             title: 'StyleGuide',
             verbose: false,
-            clean: true,
+            clean: false,
             cache: true
         });
+        assert(typeof FrontNote.noop === 'function');
+        assert(FrontNote.noop() === undefined);
     });
 
-
-    it('parseFilesExists', function(done) {
-        frontnote.render('./test/sass/sample.scss',function() {
+    it('default render', function(done) {
+        frontnote.render('./test/sass/*.scss',function() {
             for (var i = 0, len = files.length; i < len; i++) {
-               assert(fs.existsSync(files[i]) === true);
+                assert(fs.existsSync(files[i]));
             }
             done();
         });
     });
 
-    it('verbose', function(done) {
+    it('verbose & clean & array asset path', function(done) {
         frontnote = new FrontNote({
+            clean: true,
             verbose: true,
             includeAssetPath: ['assets/**/*']
         });
-        frontnote.render('./test/sass/sample2.scss',function() {
+        frontnote.render('./test/sass/*.scss',function() {
             for (var i = 0, len = files.length; i < len; i++) {
-                assert(fs.existsSync(files[i]) === true);
+                assert(fs.existsSync(files[i]));
             }
             done();
         });
@@ -72,9 +74,23 @@ describe('frontnote', function() {
 
     it('no asset path', function(done) {
         frontnote = new FrontNote({
+            clean: true,
             includeAssetPath: null
         });
-        frontnote.render('./test/sass/sample2.scss',function() {
+        frontnote.render('./test/sass/*.scss',function() {
+            for (var i = 0, len = files.length; i < len; i++) {
+                assert(fs.existsSync(files[i]) === true);
+            }
+            done();
+        });
+    });
+
+    it('render with overview', function(done) {
+        frontnote = new FrontNote({
+            clean: true,
+            overview: './test/sass/overview.md'
+        });
+        frontnote.render('./test/sass/*.scss',function() {
             for (var i = 0, len = files.length; i < len; i++) {
                 assert(fs.existsSync(files[i]) === true);
             }
