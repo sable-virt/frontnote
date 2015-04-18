@@ -56,4 +56,14 @@ describe('frontnote', function() {
             done();
         });
     });
+
+    it('verbose', function(done) {
+        frontnote = new FrontNote({verbose: true});
+        frontnote.render('./test/sass/sample.scss',function() {
+            for (var i = 0, len = files.length; i < len; i++) {
+                assert(fs.existsSync(files[i]) === true);
+            }
+            done();
+        });
+    });
 });
