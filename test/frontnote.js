@@ -58,7 +58,22 @@ describe('frontnote', function() {
     });
 
     it('verbose', function(done) {
-        frontnote = new FrontNote({verbose: true});
+        frontnote = new FrontNote({
+            verbose: true,
+            includeAssetPath: ['assets/**/*']
+        });
+        frontnote.render('./test/sass/sample2.scss',function() {
+            for (var i = 0, len = files.length; i < len; i++) {
+                assert(fs.existsSync(files[i]) === true);
+            }
+            done();
+        });
+    });
+
+    it('no asset path', function(done) {
+        frontnote = new FrontNote({
+            includeAssetPath: null
+        });
         frontnote.render('./test/sass/sample2.scss',function() {
             for (var i = 0, len = files.length; i < len; i++) {
                 assert(fs.existsSync(files[i]) === true);
