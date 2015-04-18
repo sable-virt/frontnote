@@ -20,6 +20,10 @@ var files = [
     './guide/assets/lib/jquery.js',
     './guide/assets/lib/jquery.mousewheel.js'
 ];
+var noAssertFiles = [
+    './guide/index.html',
+    './guide/test-sass-sample.html'
+];
 require('./const/pattern')();
 require('./file/file')();
 require('./parser/parser')();
@@ -78,7 +82,7 @@ describe('frontnote', function() {
             includeAssetPath: null
         });
         frontnote.render('./test/sass/*.scss',function() {
-            for (var i = 0, len = files.length; i < len; i++) {
+            for (var i = 0, len = noAssertFiles.length; i < len; i++) {
                 assert(fs.existsSync(files[i]) === true);
             }
             done();
