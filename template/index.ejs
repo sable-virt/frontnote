@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title><%=title%> - FrontNote</title>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="assets/css/style.css"/>
+    <%- css %>
+</head>
+<body>
+<header class="fn-header">
+    <div class="fn-mobile-visible fn-drawer-trigger"><a class="fn-icon fn-bars fn-icon-link"></a></div>
+    <h1 class="fn-title"><a href="./index.html"><%=title%></a></h1>
+</header>
+<div class="fn-container">
+    <nav class="fn-sidebar">
+        <a href="./index.html" class="fn-menu<%if(overview){%> fn-is-active<%}%>">Overview</a>
+        <!-- 全ファイル -->
+        <% files.forEach(function(file) { %>
+        <!-- スタイルガイドへのリンク -->
+        <a href="<%- file.url %>" class="fn-menu<%if(helpers.isCurrent(current,file)){%> fn-is-active<%}%>">
+            <% if (file.overview) { %>
+                <%- file.overview.title %>
+            <% } else { %>
+                <%- file.fileName %>
+            <% } %>
+        </a>
+        <% }) %>
+    </nav>
+    <% if(overview) {%>
+        <section class="fn-content fn-overview">
+            <!-- index.htmlファイルのとき -->
+            <!-- currentにstyleguide.mdがHTMLとして格納されている -->
+            <%-current%>
+        </section>
+    <% } else { %>
+        <section class="fn-content">
+            <h2 class="fn-heading2">
+                <% if (current.overview) { %>
+                <%-current.overview.title%>
+                <% } else { %>
+                <%-current.fileName%>
+                <% } %>
+                <small class="fn-sub-heading"><%-current.file%></small>
+            </h2>
+            <% if (current.overview) { %>
+            <p class="fn-comment"><%-current.overview.comment%></p>
+            <% } %>
+
+            <% if(current.colors) { %>
+            <% current.colors.forEach(function(color) { %>
+            <div class="fn-color-pallet">
+                <h3 class="fn-heading3"><%- color.name %></h3>
+                <p class="fn-comment"><%- color.color %></p>
+                <div class="fn-color-panel" style="background-color:<%-color.color%>"></div>
+            </div>
+            <% }); %>
+            <% } %>
+
+            <% if(current.sections) { %>
+            <% current.sections.forEach(function(section) { %>
+            <article class="fn-article">
+                <h3 class="fn-heading3"><%- section.title %></h3>
+                <ul class="fn-attribute">
+                    <% section.attributes.forEach(function(attribute) {%>
+                    <% if(attribute.toLowerCase() === 'deprecated' || attribute === '非推奨') {%>
+                    <li class="fn-attribute-item fn-attribute-deprecated"><%=attribute%></li>
+                    <% } else if(attribute.toLowerCase() === 'todo') { %>
+                    <li class="fn-attribute-item fn-attribute-todo"><%=attribute%></li>
+                    <% } else { %>
+                    <li class="fn-attribute-item"><%=attribute%></li>
+                    <% } %>
+                    <% }); %>
+                </ul>
+                <p class="fn-comment"><%- section.comment %></p>
+                <% if(section.attributes) { %>
+                <% } %>
+                <div class="fn-preview">
+                    <%- section.code %>
+                </div>
+                <pre class="fn-pre"><i class="fn-icon fn-hand-o-down"> 選択</i><code class="fn-code" data-language="html"><%= section.code %></code></pre>
+            </article>
+            <% }) %>
+            <% } %>
+            <div class="fn-pagetop">
+                <a href="" class="fn-icon fn-chevron-up"></a>
+            </div>
+        </section>
+    <% } %>
+</div>
+<script src="assets/lib/jquery.js"></script>
+<script src="assets/lib/jquery.mousewheel.js"></script>
+<script src="assets/lib/highlight.pack.js"></script>
+<script src="assets/js/ripple-effect.js"></script>
+<script src="assets/js/main.js"></script>
+<%- script %>
+</body>
+</html>
