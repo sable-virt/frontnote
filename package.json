@@ -1,6 +1,6 @@
 {
   "name": "frontnote",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "StyleGuide Generator FrontNote",
   "license": "MIT",
   "repository": {
@@ -25,10 +25,10 @@
   "dependencies": {
     "async": "^1.2.1",
     "colors": "^1.1.2",
-    "ejs": "^2.3.1",
+    "ejs": "^2.3.2",
     "fs-extra": "^0.20.1",
-    "github-flavored-markdown": "^1.0.1",
-    "glob": "^5.0.10",
+    "glob": "^5.0.12",
+    "marked": "^0.3.3",
     "memory-cache": "0.1.4",
     "sanitizer": "^0.1.2",
     "util-extend": "^1.0.1"
@@ -36,7 +36,7 @@
   "devDependencies": {
     "espower-loader": "^0.11.0",
     "intelli-espower-loader": "^0.7.0",
-    "istanbul": "^0.3.15",
+    "istanbul": "^0.3.17",
     "mocha": "^2.2.5",
     "power-assert": "^0.11.0"
   },
