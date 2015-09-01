@@ -23,11 +23,11 @@
     "ejs"
   ],
   "dependencies": {
-    "async": "^1.2.1",
+    "async": "^1.4.2",
     "colors": "^1.1.2",
-    "ejs": "^2.3.2",
+    "ejs": "^2.3.3",
     "fs-extra": "^0.20.1",
-    "glob": "^5.0.12",
+    "glob": "^5.0.14",
     "marked": "^0.3.3",
     "memory-cache": "0.1.4",
     "sanitizer": "^0.1.2",
@@ -37,7 +37,7 @@
     "espower-loader": "^0.11.0",
     "intelli-espower-loader": "^0.7.0",
     "istanbul": "^0.3.17",
-    "mocha": "^2.2.5",
+    "mocha": "^2.3.0",
     "power-assert": "^0.11.0"
   },
   "bugs": {
