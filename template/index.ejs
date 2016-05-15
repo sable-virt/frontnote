@@ -15,9 +15,9 @@
 <div class="fn-container">
     <nav class="fn-sidebar">
         <a href="./index.html" class="fn-menu<%if(overview){%> fn-is-active<%}%>">Overview</a>
-        <!-- 全ファイル -->
+        <%# 全ファイル %>
         <% files.forEach(function(file) { %>
-        <!-- スタイルガイドへのリンク -->
+        <%# スタイルガイドへのリンク %>
         <a href="<%- file.url %>" class="fn-menu<%if(helpers.isCurrent(current,file)){%> fn-is-active<%}%>">
             <% if (file.overview) { %>
                 <%- file.overview.title %>
@@ -29,8 +29,8 @@
     </nav>
     <% if(overview) {%>
         <section class="fn-content fn-overview">
-            <!-- index.htmlファイルのとき -->
-            <!-- currentにstyleguide.mdがHTMLとして格納されている -->
+            <%# index.htmlファイルのとき %>
+            <%# currentにstyleguide.mdがHTMLとして格納されている %>
             <%-current%>
         </section>
     <% } else { %>
@@ -61,6 +61,7 @@
             <% current.sections.forEach(function(section) { %>
             <article class="fn-article">
                 <h3 class="fn-heading3"><%- section.title %></h3>
+                <% if(section.attributes) { %>
                 <ul class="fn-attribute">
                     <% section.attributes.forEach(function(attribute) {%>
                     <% if(attribute.toLowerCase() === 'deprecated' || attribute === '非推奨') {%>
@@ -72,13 +73,14 @@
                     <% } %>
                     <% }); %>
                 </ul>
-                <p class="fn-comment"><%- section.comment %></p>
-                <% if(section.attributes) { %>
                 <% } %>
+                <p class="fn-comment"><%- section.comment %></p>
+                <% if(section.code) { %>
                 <div class="fn-preview">
                     <%- section.code %>
                 </div>
                 <pre class="fn-pre"><i class="fn-icon fn-hand-o-down"> 選択</i><code class="fn-code" data-language="html"><%= section.code %></code></pre>
+                <% } %>
             </article>
             <% }) %>
             <% } %>
