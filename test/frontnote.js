@@ -29,7 +29,6 @@ require('./const/pattern')();
 require('./parser/parser')();
 require('./helper/template-helper')();
 require('./render/render')();
-require('./debug/debug')();
 
 describe('frontnote', function() {
     let frontnote;
