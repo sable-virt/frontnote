@@ -1,9 +1,10 @@
-var assert = require('power-assert');
-var fs = require('fs');
+'use strict';
 
-var FrontNote = require('../lib/frontnote');
-var File = require('../lib/file/file');
-var files = [
+const assert = require('power-assert');
+const fs = require('fs');
+
+const FrontNote = require('../lib/frontnote');
+const files = [
     './guide/index.html',
     './guide/test-sass-sample.html',
     './guide/assets/js/main.js',
@@ -20,41 +21,37 @@ var files = [
     './guide/assets/lib/jquery.js',
     './guide/assets/lib/jquery.mousewheel.js'
 ];
-var noAssertFiles = [
+const noAssertFiles = [
     './guide/index.html',
     './guide/test-sass-sample.html'
 ];
 require('./const/pattern')();
-require('./file/file')();
 require('./parser/parser')();
 require('./helper/template-helper')();
 require('./render/render')();
 require('./debug/debug')();
 
 describe('frontnote', function() {
-    var frontnote;
+    let frontnote;
     beforeEach(function() {
         frontnote = new FrontNote();
     });
     it('init', function() {
         assert.deepEqual(frontnote.options,{
-            overview: process.cwd() + '/lib/../styleguide.md',
-            template: process.cwd() + '/lib/../template/index.ejs',
-            includeAssetPath: 'assets/**/*',
+            overview: process.cwd() + '/lib/const/../../styleguide.md',
+            template: process.cwd() + '/lib/const/../../template/index.ejs',
+            includeAssetPath: 'template/assets/**/*',
             css: './style.css',
             script: null,
             out: process.cwd() + '/guide',
             title: 'StyleGuide',
             verbose: false,
-            clean: false,
-            cache: true
+            clean: false
         });
-        assert(typeof FrontNote.noop === 'function');
-        assert(FrontNote.noop() === undefined);
     });
 
     it('default render', function(done) {
-        frontnote.render('./test/sass/*.scss',function() {
+        frontnote.render('./test/sass/*.scss').subscribe(() => {
             for (var i = 0, len = files.length; i < len; i++) {
                 assert(fs.existsSync(files[i]));
             }
@@ -63,7 +60,7 @@ describe('frontnote', function() {
     });
 
     it('cache render', function(done) {
-        frontnote.render('./test/sass/*.scss',function() {
+        frontnote.render('./test/sass/*.scss').subscribe(() => {
             for (var i = 0, len = files.length; i < len; i++) {
                 assert(fs.existsSync(files[i]));
             }
@@ -75,9 +72,9 @@ describe('frontnote', function() {
         frontnote = new FrontNote({
             clean: true,
             verbose: true,
-            includeAssetPath: ['assets/**/*']
+            includeAssetPath: ['template/assets/**/*']
         });
-        frontnote.render('./test/sass/*.scss',function() {
+        frontnote.render('./test/sass/*.scss').subscribe(() => {
             for (var i = 0, len = files.length; i < len; i++) {
                 assert(fs.existsSync(files[i]));
             }
@@ -90,7 +87,7 @@ describe('frontnote', function() {
             clean: true,
             includeAssetPath: null
         });
-        frontnote.render('./test/sass/*.scss',function() {
+        frontnote.render('./test/sass/*.scss').subscribe(() => {
             for (var i = 0, len = noAssertFiles.length; i < len; i++) {
                 assert(fs.existsSync(files[i]) === true);
             }
@@ -103,7 +100,7 @@ describe('frontnote', function() {
             clean: true,
             overview: './test/sass/overview.md'
         });
-        frontnote.render('./test/sass/*.scss',function() {
+        frontnote.render('./test/sass/*.scss').subscribe(() => {
             for (var i = 0, len = files.length; i < len; i++) {
                 assert(fs.existsSync(files[i]) === true);
             }
