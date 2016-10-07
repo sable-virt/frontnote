@@ -1,6 +1,6 @@
 {
   "name": "frontnote",
-  "version": "1.1.2",
+  "version": "2.0.0",
   "description": "StyleGuide Generator FrontNote",
   "license": "MIT",
   "repository": {
@@ -9,9 +9,13 @@
   },
   "author": "frontainer <frontainer@gmail.com> (http://frontainer.com)",
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=5.0.0"
+  },
+  "bin": {
+    "frontnote": "./bin/index.js"
   },
   "scripts": {
+    "changelog": "conventional-changelog -p eslint -i CHANGELOG.md -w -s -r 0",
     "test": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --require intelli-espower-loader -R spec ./test/frontnote.js"
   },
   "keywords": [
@@ -38,6 +42,7 @@
     "sanitizer": "^0.1.3"
   },
   "devDependencies": {
+    "conventional-changelog-cli": "^1.2.0",
     "espower-loader": "^1.0.1",
     "intelli-espower-loader": "^1.0.1",
     "istanbul": "^0.4.5",

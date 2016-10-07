@@ -5,6 +5,7 @@ const extend = require('extend');
 const program = require('commander');
 const path = require('path');
 const gaze = require('gaze');
+const chalk = require('chalk');
 const pkg = require('../package.json');
 const DEFAULT_OPTION = require('../lib/const/options');
 const frontnote = require('../lib/frontnote');
@@ -39,27 +40,27 @@ if (program.assets) options.assets = program.assets;
 if (program.verbose) options.verbose = program.verbose;
 
 let fn = new frontnote(options);
-function render() {
-    fn.render(path.join(process.cwd(), args[0])).subscribe(() => {
-        console.log('done');
-    }, (e) => {
-        console.error(e);
-    });
-}
 let pattern = path.join(process.cwd(), args[0]);
+function echo(result) {
+    if (options.verbose) {
+        result.forEach((filepath) => {
+            console.log(chalk.green(`[w] ${filepath}`));
+        });
+    }
+}
 if (program.watch) {
     gaze(pattern, (err, watcher) => {
         watcher.on('all', function(filepath) {
             fn.render(pattern).subscribe(() => {
-                console.log('done');
+                echo(result);
             }, (e) => {
                 console.error(e);
             });
         });
     });
 } else {
-    fn.render(pattern).subscribe(() => {
-        console.log('done');
+    fn.render(pattern).subscribe((result) => {
+        echo(result);
     }, (e) => {
         console.error(e);
     });
