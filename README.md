@@ -8,9 +8,6 @@
 StyleGuide Generator
 Node.jsを使ったスタイルガイドジェネレーター
 
-## Version - バージョン
-1.0.0
-
 ## Usage - 使い方
 
 First, install `frontnote`:
@@ -24,7 +21,7 @@ var FrontNote = require('frontnote');
 var note = new FrontNote({
 	out: './docs'
 });
-note.render('path/**/*.css', function() {
+note.render('path/**/*.css').subscribe(function {
 	//callback
 });
 ```
@@ -143,6 +140,14 @@ Display a detailed log
 
 ログを詳細に表示します
 
+### options.params
+Type: `Object`
+Default value: `{}`
+
+Custom variables for using ejs templates.
+
+ejsテンプレート内で使う任意の変数を定義できます。
+
 ## Template - テンプレート
 
 [frontnote-template](https://github.com/frontainer/frontnote-template)
@@ -200,42 +205,6 @@ Create color guide
 	@secondary #333
 	@color-name color-code
 	*/
-
-
-## Difference of version 1.x and 0.x - バージョン1.xと0.xの違い
-
-- Some breaking changes - いくつかの仕様変更
-- New public function - 新しい関数の追加
- - render(filepath,callback);
-- Refactor to Testable code(Mocha testing) - テスタブルなコードにリファクタリング(Mochaによるテスト)
-- Enabled callback function - コールバック関数を実行できるようになった
-- Check coverage - カバレッジのチェックを追加
-- Minor bug fix - 軽微な不具合の修正
-
-### Breaking changes - 仕様変更
-
-#### Change timing of output files.
-
-##### version 0.x
-
-```
-var frontNote = require('frontnote');
-frontNote('path/**/*.css',{
-    out: './docs'
-});	// <- Immediately output files.
-```
-
-##### version 1.x
-
-```
-var FrontNote = require('frontnote');
-var note = new FrontNote({
-    out: './docs'
-});
-note.render('path/**/*.css',function() { //<- output files.
-	// callback
-});
-```
 
 ## Test
 
