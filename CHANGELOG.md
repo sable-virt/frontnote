@@ -1,21 +1,21 @@
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/frontainer/frontnote/compare/v2.0.0...v2.0.1) (2016-10-08)
+
+
+### fix
+
+* render関数が配列を許容できるように ([db68cc249348e254a6e6a5826215a9a51c160cd4](https://github.com/frontainer/frontnote/commit/db68cc249348e254a6e6a5826215a9a51c160cd4))
+
+
+
 <a name="2.0.0"></a>
-# [2.0.0](https://github.com/frontainer/frontnote/compare/1.1.2...v2.0.0) (2016-10-07)
+# [2.0.0](https://github.com/frontainer/frontnote/compare/1.1.2...v2.0.0) (2016-10-08)
 
 
 ### add
 
 * CLIで実行できるように ([c9708bf30cc1de9ad49eb03e91b5082025e523ab](https://github.com/frontainer/frontnote/commit/c9708bf30cc1de9ad49eb03e91b5082025e523ab))
 * ejsに任意の値を渡せるオプションparamsを追加 #7 ([c9e4b88f48fe7af01c4106320350296ad04dbfeb](https://github.com/frontainer/frontnote/commit/c9e4b88f48fe7af01c4106320350296ad04dbfeb))
-
-### breaking
-
-* 動作環境をNode.js 5以上に ([34a01c45deb4d9664d3bec63503459a56c7ee5c5](https://github.com/frontainer/frontnote/commit/34a01c45deb4d9664d3bec63503459a56c7ee5c5))
-
-### feat
-
-* 非同期処理をRxに置き換え、記法をES6に ([8d27e28f12f0288a35af1209d32adf5d2cad75d4](https://github.com/frontainer/frontnote/commit/8d27e28f12f0288a35af1209d32adf5d2cad75d4))
-
-
 
 ### breaking
 
