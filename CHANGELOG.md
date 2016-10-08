@@ -1,3 +1,13 @@
+<a name="2.0.2"></a>
+## [2.0.2](https://github.com/frontainer/frontnote/compare/v2.0.1...v2.0.2) (2016-10-08)
+
+
+### fix
+
+* includeAssetPathがデフォルトだと正しく複製されない ([aa8d9f141106b9d0c61cbcf48281b6f0df41e406](https://github.com/frontainer/frontnote/commit/aa8d9f141106b9d0c61cbcf48281b6f0df41e406))
+
+
+
 <a name="2.0.1"></a>
 ## [2.0.1](https://github.com/frontainer/frontnote/compare/v2.0.0...v2.0.1) (2016-10-08)
 
@@ -24,6 +34,7 @@
 ### feat
 
 * 非同期処理をRxに置き換え、記法をES6に ([8d27e28f12f0288a35af1209d32adf5d2cad75d4](https://github.com/frontainer/frontnote/commit/8d27e28f12f0288a35af1209d32adf5d2cad75d4))
+
 
 
 ## Difference of version 2.x and 1.x - バージョン1.xと0.xの違い
