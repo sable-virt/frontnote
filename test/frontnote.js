@@ -39,7 +39,7 @@ describe('frontnote', function() {
         assert.deepEqual(frontnote.options,{
             overview: process.cwd() + '/lib/const/../../styleguide.md',
             template: process.cwd() + '/lib/const/../../template/index.ejs',
-            includeAssetPath: 'template/assets/**/*',
+            includeAssetPath: process.cwd() + '/lib/const/../../template/assets/**/*',
             css: './style.css',
             script: null,
             out: process.cwd() + '/guide',
