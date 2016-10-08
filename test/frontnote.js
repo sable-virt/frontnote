@@ -45,7 +45,8 @@ describe('frontnote', function() {
             out: process.cwd() + '/guide',
             title: 'StyleGuide',
             verbose: false,
-            clean: false
+            clean: false,
+            params: {}
         });
     });
 
