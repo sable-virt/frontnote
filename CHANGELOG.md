@@ -1,3 +1,13 @@
+<a name="2.0.3"></a>
+## [2.0.3](https://github.com/frontainer/frontnote/compare/v2.0.2...v2.0.3) (2016-10-08)
+
+
+### fix
+
+* verbose出力をcliではなくlib/frontnote.jsで ([bcabc34af550e6de20510ef890c304179ea80dea](https://github.com/frontainer/frontnote/commit/bcabc34af550e6de20510ef890c304179ea80dea))
+
+
+
 <a name="2.0.2"></a>
 ## [2.0.2](https://github.com/frontainer/frontnote/compare/v2.0.1...v2.0.2) (2016-10-08)
 
@@ -34,6 +44,7 @@
 ### feat
 
 * 非同期処理をRxに置き換え、記法をES6に ([8d27e28f12f0288a35af1209d32adf5d2cad75d4](https://github.com/frontainer/frontnote/commit/8d27e28f12f0288a35af1209d32adf5d2cad75d4))
+
 
 
 
