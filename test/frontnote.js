@@ -1,7 +1,7 @@
 'use strict';
 
 const assert = require('power-assert');
-const fs = require('fs');
+const fs = require('fs-extra');
 
 const FrontNote = require('../lib/frontnote');
 const files = [
@@ -34,6 +34,9 @@ describe('frontnote', function() {
     let frontnote;
     beforeEach(function() {
         frontnote = new FrontNote();
+    });
+    afterEach(function() {
+        fs.remove('./guide');
     });
     it('init', function() {
         assert.deepEqual(frontnote.options,{
@@ -104,6 +107,16 @@ describe('frontnote', function() {
             for (var i = 0, len = files.length; i < len; i++) {
                 assert(fs.existsSync(files[i]) === true);
             }
+            done();
+        });
+    });
+
+    it('no src', function(done) {
+        frontnote = new FrontNote({
+            clean: true,
+            includeAssetPath: null
+        });
+        frontnote.render('./none/*.scss').subscribe(() => {
             done();
         });
     });
