@@ -182,7 +182,7 @@ Section of style guide.
 
 	style comment.
 
-	@depulicated
+	@duplicated
 	@非推奨
 	@todo
 	@your-attribute
