@@ -171,18 +171,18 @@ Only 1 comment block in a file.
 ### Section - セクション
 
 Section of style guide.
-'@' means attribute of this section. (ex. @duplicated @todo)
+'@' means attribute of this section. (ex. @deprecated @todo)
 
 各スタイルごとに記述します。  
-@をつけるとこのセクションに属性ラベルをつけることができます（例: @非推奨, $todo）
-	
+@をつけるとこのセクションに属性ラベルをつけることができます（例: @非推奨, @todo）
+
 	/*
 	#styleguide
 	style title
 
 	style comment.
 
-	@depulicated
+	@deprecated
 	@非推奨
 	@todo
 	@your-attribute
