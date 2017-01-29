@@ -21,7 +21,7 @@ var FrontNote = require('frontnote');
 var note = new FrontNote({
 	out: './docs'
 });
-note.render('path/**/*.css').subscribe(function {
+note.render('path/**/*.css').subscribe(function() {
 	//callback
 });
 ```
