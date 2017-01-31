@@ -1,3 +1,15 @@
+<a name="2.0.5"></a>
+## [2.0.5](https://github.com/frontainer/frontnote/compare/v2.0.4...v2.0.5) (2017-01-31)
+
+
+### fix
+
+* render関数に*の含まれたパスを配列で渡すとエラーになる #11 ([e25abcfa9b883d9f62df0a4a6a8da219c5062747](https://github.com/frontainer/frontnote/commit/e25abcfa9b883d9f62df0a4a6a8da219c5062747))
+* 使い方のfunction文の修正 ([9dd4a8d401aa4261fc13d960b0f26bb3e1e5f11f](https://github.com/frontainer/frontnote/commit/9dd4a8d401aa4261fc13d960b0f26bb3e1e5f11f))
+* 属性ラベル名の例示を修正 ([a083c5b6866f214cc2dbb651176b954d3db1fa29](https://github.com/frontainer/frontnote/commit/a083c5b6866f214cc2dbb651176b954d3db1fa29))
+
+
+
 <a name="2.0.4"></a>
 ## [2.0.4](https://github.com/frontainer/frontnote/compare/v2.0.3...v2.0.4) (2016-10-08)
 
@@ -57,71 +69,105 @@
 
 
 
-## Difference of version 2.x and 1.x - バージョン1.xと0.xの違い
+<a name="1.1.1"></a>
+## [1.1.1](https://github.com/frontainer/frontnote/compare/1.1.0...1.1.1) (2015-09-06)
 
-- Some breaking changes - いくつかの仕様変更
-- FrontNode Class return `Rx.Observable` - FrontNoteクラスはRx.Observableを返すように
-- Add new option `params` - paramsオプションが追加
-- Minor bug fix - 軽微な不具合の修正
-- Add CLI - CLIでも実行できるように
 
-## Difference of version 1.x and 0.x - バージョン1.xと0.xの違い
 
-- Some breaking changes - いくつかの仕様変更
-- New public function - 新しい関数の追加
- - render(filepath,callback);
-- Refactor to Testable code(Mocha testing) - テスタブルなコードにリファクタリング(Mochaによるテスト)
-- Enabled callback function - コールバック関数を実行できるようになった
-- Check coverage - カバレッジのチェックを追加
-- Minor bug fix - 軽微な不具合の修正
 
-### Breaking changes - 仕様変更
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/frontainer/frontnote/compare/1.0.2...1.1.0) (2015-06-29)
 
-#### Rx.Observable instead of callback function
 
-##### version 2.x
 
-```
-var FrontNote = require('frontnote');
-var note = new FrontNote({
-	out: './docs'
-});
-note.render('path/**/*.css').subscribe(function {
-	//callback
-});
-```
 
-##### version 1.x
+<a name="1.0.2"></a>
+## [1.0.2](https://github.com/frontainer/frontnote/compare/1.0.1...1.0.2) (2015-06-23)
 
-```
-var FrontNote = require('frontnote');
-var note = new FrontNote({
-    out: './docs'
-});
-note.render('path/**/*.css',function() { //<- callback function
-	// callback
-});
-```
 
-#### Change timing of output files.
 
-##### version 0.x
 
-```
-var frontNote = require('frontnote');
-frontNote('path/**/*.css',{
-    out: './docs'
-});	// <- Immediately output files.
-```
+<a name="1.0.1"></a>
+## [1.0.1](https://github.com/frontainer/frontnote/compare/1.0.0...1.0.1) (2015-05-12)
 
-##### version 1.x
 
-```
-var FrontNote = require('frontnote');
-var note = new FrontNote({
-    out: './docs'
-});
-note.render('path/**/*.css',function() { //<- output files.
-	// callback
-});
-```
+
+
+<a name="1.0.0"></a>
+# [1.0.0](https://github.com/frontainer/frontnote/compare/0.1.0...1.0.0) (2015-04-18)
+
+
+
+
+<a name="0.1.0"></a>
+# [0.1.0](https://github.com/frontainer/frontnote/compare/0.0.12...0.1.0) (2014-09-14)
+
+
+
+
+<a name="0.0.12"></a>
+## [0.0.12](https://github.com/frontainer/frontnote/compare/0.0.10...0.0.12) (2014-08-26)
+
+
+
+
+<a name="0.0.10"></a>
+## [0.0.10](https://github.com/frontainer/frontnote/compare/0.0.9...0.0.10) (2014-08-25)
+
+
+
+
+<a name="0.0.9"></a>
+## [0.0.9](https://github.com/frontainer/frontnote/compare/0.0.8...0.0.9) (2014-08-25)
+
+
+
+
+<a name="0.0.8"></a>
+## [0.0.8](https://github.com/frontainer/frontnote/compare/0.0.7...0.0.8) (2014-08-24)
+
+
+
+
+<a name="0.0.7"></a>
+## [0.0.7](https://github.com/frontainer/frontnote/compare/0.0.6...0.0.7) (2014-08-22)
+
+
+
+
+<a name="0.0.6"></a>
+## [0.0.6](https://github.com/frontainer/frontnote/compare/0.0.5...0.0.6) (2014-08-22)
+
+
+
+
+<a name="0.0.5"></a>
+## [0.0.5](https://github.com/frontainer/frontnote/compare/0.0.4...0.0.5) (2014-08-20)
+
+
+
+
+<a name="0.0.4"></a>
+## [0.0.4](https://github.com/frontainer/frontnote/compare/0.0.3...0.0.4) (2014-08-19)
+
+
+
+
+<a name="0.0.3"></a>
+## [0.0.3](https://github.com/frontainer/frontnote/compare/0.0.2...0.0.3) (2014-08-18)
+
+
+
+
+<a name="0.0.2"></a>
+## [0.0.2](https://github.com/frontainer/frontnote/compare/0.0.1...0.0.2) (2014-08-17)
+
+
+
+
+<a name="0.0.1"></a>
+## 0.0.1 (2014-08-17)
+
+
+
+
