@@ -30,16 +30,16 @@ require('./parser/parser')();
 require('./helper/template-helper')();
 require('./render/render')();
 
-describe('frontnote', function() {
+describe('frontnote', function () {
     let frontnote;
-    beforeEach(function() {
+    beforeEach(function () {
         frontnote = new FrontNote();
     });
-    afterEach(function() {
+    afterEach(function () {
         fs.remove('./guide');
     });
-    it('init', function() {
-        assert.deepEqual(frontnote.options,{
+    it('init', function () {
+        assert.deepEqual(frontnote.options, {
             overview: process.cwd() + '/lib/const/../../styleguide.md',
             template: process.cwd() + '/lib/const/../../template/index.ejs',
             includeAssetPath: process.cwd() + '/lib/const/../../template/assets/**/*',
@@ -53,7 +53,7 @@ describe('frontnote', function() {
         });
     });
 
-    it('default render', function(done) {
+    it('default render', function (done) {
         frontnote.render('./test/sass/*.scss').subscribe(() => {
             for (var i = 0, len = files.length; i < len; i++) {
                 assert(fs.existsSync(files[i]));
@@ -62,7 +62,7 @@ describe('frontnote', function() {
         });
     });
 
-    it('cache render', function(done) {
+    it('cache render', function (done) {
         frontnote.render('./test/sass/*.scss').subscribe(() => {
             for (var i = 0, len = files.length; i < len; i++) {
                 assert(fs.existsSync(files[i]));
@@ -71,7 +71,7 @@ describe('frontnote', function() {
         });
     });
 
-    it('verbose & clean & array asset path', function(done) {
+    it('verbose & clean & array asset path', function (done) {
         frontnote = new FrontNote({
             clean: true,
             verbose: true,
@@ -85,7 +85,7 @@ describe('frontnote', function() {
         });
     });
 
-    it('no asset path', function(done) {
+    it('no asset path', function (done) {
         frontnote = new FrontNote({
             clean: true,
             includeAssetPath: null
@@ -98,7 +98,7 @@ describe('frontnote', function() {
         });
     });
 
-    it('render with overview', function(done) {
+    it('render with overview', function (done) {
         frontnote = new FrontNote({
             clean: true,
             overview: './test/sass/overview.md'
@@ -111,12 +111,22 @@ describe('frontnote', function() {
         });
     });
 
-    it('no src', function(done) {
+    it('no src', function (done) {
         frontnote = new FrontNote({
             clean: true,
             includeAssetPath: null
         });
         frontnote.render('./none/*.scss').subscribe(() => {
+            done();
+        });
+    });
+
+    it('multiple entrypoint', function (done) {
+        frontnote = new FrontNote({
+            clean: true,
+            includeAssetPath: null
+        });
+        frontnote.render(['./test/sass/partial/**/*.scss', './test/sass/*.scss']).subscribe(() => {
             done();
         });
     });
