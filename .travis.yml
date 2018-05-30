@@ -1,9 +1,10 @@
 sudo: false
 language: node_js
 node_js:
+- '9'
+- '8'
 - '7'
 - '6'
-- '5'
 addons:
   code_climate:
     repo_token: 3b1b8a63197add999a34a21b2ec13ae89f37338e4f9deba54c4d55ad445f3425
